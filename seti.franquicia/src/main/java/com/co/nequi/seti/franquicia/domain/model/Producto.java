@@ -1,0 +1,66 @@
+/**
+ * 
+ */
+package com.co.nequi.seti.franquicia.domain.model;
+
+/**
+ * @author MarkoPortatil
+ * @version 1.0
+ * @since 29 Julio 2025
+ */
+public class Producto {
+
+	private Long id;
+	private String nombre;
+	private Long stock;
+	private Long idSucursal;
+
+	/**
+	 * Metodo Constructor
+	 * 
+	 * @param id
+	 * @param nombre
+	 * @param precio
+	 * @param idFranquicia
+	 */
+	public Producto(Long id, String nombre, Long stock, Long sucursal_id) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.stock = stock;
+		this.idSucursal = sucursal_id;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public Long getStock() {
+		return stock;
+	}
+
+	public void setStock(Long stock) {
+		this.stock = stock;
+	}
+
+	public Long getIdSucursal() {
+		return idSucursal;
+	}
+
+	public void setIdSucursal(Long idSucursal) {
+		this.idSucursal = idSucursal;
+	}
+
+}
