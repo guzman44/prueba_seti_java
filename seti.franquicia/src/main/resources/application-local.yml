@@ -10,6 +10,12 @@ spring:
     baseline-on-migrate: true
     validate-on-migrate: true
     out-of-order: true
+    
+    
+  datasource:
     url: jdbc:mysql://localhost:3306/franquicias_db
-    user: root
+    username: root
     password: 123
+    driver-class-name: com.mysql.cj.jdbc.Driver    
+ 
+  

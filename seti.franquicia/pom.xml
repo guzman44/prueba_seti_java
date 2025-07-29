@@ -49,12 +49,6 @@
 	    </dependency>
 		
         <!-- JDBC MySQL (solo para Flyway) -->
-		<!-- Flyway Core -->
-		<dependency>
-		    <groupId>org.flywaydb</groupId>
-		    <artifactId>flyway-core</artifactId>
-		</dependency>
-		
 		<!-- Flyway MySQL -->
 		 <!-- Compatible con MySQL 8 y Java 11 -->
 		 <dependency>
@@ -62,6 +56,11 @@
 	        <artifactId>flyway-core</artifactId>
 	        <version>8.5.13</version>
 	    </dependency>
+	    
+	    <dependency>
+		  <groupId>org.springframework.boot</groupId>
+		  <artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
 		
 	    <dependency>
 	        <groupId>mysql</groupId>

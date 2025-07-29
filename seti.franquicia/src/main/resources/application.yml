@@ -10,7 +10,7 @@ spring:
     name: seti-franquicia
 
   profiles:
-    active: local  # Cambiar de "local" a "aws" en despliegue en la nube cuando sea a procduccoin
+    active: aws  # Cambiar de "local" a "aws" en despliegue en la nube cuando sea a procduccoin
 
   main:
     web-application-type: reactive
