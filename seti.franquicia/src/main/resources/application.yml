@@ -1,0 +1,27 @@
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+
+spring:
+  application:
+    name: seti-franquicia
+
+  profiles:
+    active: local  # Cambiar de "local" a "aws" en despliegue en la nube cuando sea a procduccoin
+
+  main:
+    web-application-type: reactive
+
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true
+
+logging:
+  level:
+    root: INFO
+    com.co.nequi: DEBUG
+    org.flywaydb: DEBUG
+    
