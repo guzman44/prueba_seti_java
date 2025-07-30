@@ -1,6 +1,8 @@
 package com.co.nequi.seti.franquicia.infrastructure.drivenadapter.sucursal;
 
 import org.springframework.stereotype.Component;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.co.nequi.seti.franquicia.domain.gateway.SucursalRepository;
 import com.co.nequi.seti.franquicia.domain.model.Sucursal;
@@ -19,6 +21,8 @@ import reactor.core.publisher.Mono;
 @Component
 public class SucursalRepositoryAdapter implements SucursalRepository {
 
+	private static final Logger logger = LoggerFactory.getLogger(SucursalRepositoryAdapter.class);
+
 	public SucursalRepositoryAdapter(SucursalR2DBCRepository repository) {
 		this.repository = repository;
 	}
@@ -26,40 +30,48 @@ public class SucursalRepositoryAdapter implements SucursalRepository {
 	private final SucursalR2DBCRepository repository;
 
 	@Override
-	public Mono<Sucursal> save(Sucursal Sucursal) {
-		SucursalEntity entity = SucursalMapper.toEntity(Sucursal);
-		return repository.save(entity).map(SucursalMapper::toDomain);
+	public Mono<Sucursal> save(Sucursal sucursal) {
+		SucursalEntity entity = SucursalMapper.toEntity(sucursal);
+		return repository.save(entity).doOnNext(saved -> logger.info("Sucursal guardada: {}", saved.getId()))
+				.doOnError(e -> logger.error("Error al guardar sucursal", e)).map(SucursalMapper::toDomain);
 	}
 
-	
 	@Override
 	public Mono<Sucursal> findById(Long id) {
-		return repository.findById(id).map(SucursalMapper::toDomain);
+		return repository.findById(id).doOnNext(sucursal -> logger.info("Sucursal encontrada: {}", id))
+				.doOnError(e -> logger.error("Error al buscar sucursal ID: {}", id, e)).map(SucursalMapper::toDomain);
 	}
 
 	@Override
-	public Flux<Sucursal> findByIdFranquicia(Long IdFranquicia) {
-		return repository.findByIdFranquicia(IdFranquicia).map(SucursalMapper::toDomain);
+	public Flux<Sucursal> findByIdFranquicia(Long idFranquicia) {
+		return repository.findByIdFranquicia(idFranquicia)
+				.doOnNext(sucursal -> logger.info("Sucursal por franquicia ID {}: {}", idFranquicia, sucursal.getId()))
+				.doOnComplete(() -> logger.info("Consulta por franquicia completa"))
+				.doOnError(e -> logger.error("Error al buscar sucursales por franquicia", e))
+				.map(SucursalMapper::toDomain);
 	}
 
-	
 	@Override
-	public Mono<Sucursal> update(Long id, Sucursal Sucursal) {
+	public Mono<Sucursal> update(Long id, Sucursal sucursal) {
 		return repository.findById(id).flatMap(existing -> {
-			existing.setNombre(Sucursal.getNombre());
-			existing.setIdFranquicia(Sucursal.getIdFranquicia());
+			existing.setNombre(sucursal.getNombre());
+			existing.setIdFranquicia(sucursal.getIdFranquicia());
 			return repository.save(existing);
-		}).map(SucursalMapper::toDomain);
+		}).doOnNext(updated -> logger.info("Sucursal actualizada: {}", updated.getId()))
+				.doOnError(e -> logger.error("Error al actualizar sucursal ID: {}", id, e))
+				.map(SucursalMapper::toDomain);
 	}
 
 	@Override
 	public Mono<Void> delete(Long id) {
-		return repository.deleteById(id);
+		return repository.deleteById(id).doOnSuccess(v -> logger.info("Sucursal eliminada: {}", id))
+				.doOnError(e -> logger.error("Error al eliminar sucursal ID: {}", id, e));
 	}
-
 
 	@Override
 	public Flux<Sucursal> findAll() {
-		return repository.findAll().map(SucursalMapper::toDomain);
+		return repository.findAll().doOnNext(sucursal -> logger.info("Sucursal listada: {}", sucursal.getId()))
+				.doOnComplete(() -> logger.info("Listado completo de sucursales"))
+				.doOnError(e -> logger.error("Error al listar sucursales", e)).map(SucursalMapper::toDomain);
 	}
 }
