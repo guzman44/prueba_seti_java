@@ -4,6 +4,7 @@
 package com.co.nequi.seti.franquicia.domain.gateway;
 
 import com.co.nequi.seti.franquicia.domain.model.Producto;
+import com.co.nequi.seti.franquicia.domain.model.ProductoStockPorSucursal;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -26,4 +27,7 @@ public interface ProductoRepository {
 	Mono<Producto> updateStock(Long id, Producto producto);
 	
 	Mono<Void> delete(Long id);
+		
+    Flux<ProductoStockPorSucursal> obtenerProductoMayorStockPorSucursalDeFranquicia(Long idFranquicia);
+
 }

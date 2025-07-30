@@ -27,6 +27,7 @@ public class ProductoRouter {
 								.POST("/productos", handler::create)
 								.GET("/productos/{id}", handler::findById)
 								.GET("/productos", handler::findAll)
+								.GET("/maxStockByFranquicia/{idFranquicia}", handler::obtenerProductoMayorStockPorSucursalDeFranquicia)
 								.PUT("/productos/{id}", handler::update)
 								.PUT("/productos/{id}/stock", handler::updateStock)
 								.DELETE("/productos/{id}", handler::delete)

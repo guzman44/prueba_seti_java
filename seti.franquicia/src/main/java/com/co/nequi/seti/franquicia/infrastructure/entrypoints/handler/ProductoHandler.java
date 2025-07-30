@@ -10,10 +10,9 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 
 import com.co.nequi.seti.franquicia.application.usecases.producto.ProductoUseCase;
 import com.co.nequi.seti.franquicia.domain.model.Producto;
+import com.co.nequi.seti.franquicia.domain.model.ProductoStockPorSucursal;
 
 import reactor.core.publisher.Mono;
-
-
 
 /**
  * @author MarkoPortatil
@@ -30,43 +29,44 @@ public class ProductoHandler {
 
 	private final ProductoUseCase useCase;
 
-	
 	public Mono<ServerResponse> create(ServerRequest request) {
-        return request.bodyToMono(Producto.class)
-                .flatMap(useCase::saveProducto)
-                .flatMap(f -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).bodyValue(f));
-    }
+		return request.bodyToMono(Producto.class).flatMap(useCase::saveProducto)
+				.flatMap(f -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).bodyValue(f));
+	}
 
-    public Mono<ServerResponse> findAll(ServerRequest request) {
-        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(useCase.getAllProductos(), Producto.class);
-    }
+	public Mono<ServerResponse> obtenerProductoMayorStockPorSucursalDeFranquicia(ServerRequest request) {
+		Long idFranquicia = Long.valueOf(request.pathVariable("idFranquicia"));
+		return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(
+				useCase.obtenerProductoMayorStockPorSucursalDeFranquicia(idFranquicia), ProductoStockPorSucursal.class);
+	}
 
-    public Mono<ServerResponse> findById(ServerRequest request) {
-        Long id = Long.valueOf(request.pathVariable("id"));
-        return useCase.getProductoById(id)
-                .flatMap(f -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).bodyValue(f))
-                .switchIfEmpty(ServerResponse.notFound().build());
-    }
+	public Mono<ServerResponse> findAll(ServerRequest request) {
+		return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(useCase.getAllProductos(),
+				Producto.class);
+	}
 
-    public Mono<ServerResponse> update(ServerRequest request) {
-        Long id = Long.valueOf(request.pathVariable("id"));
-        return request.bodyToMono(Producto.class)
-                .flatMap(f -> useCase.updateProducto(id, f))
-                .flatMap(f -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).bodyValue(f));
-    }
-    
-    public Mono<ServerResponse> updateStock(ServerRequest request) {
-        Long id = Long.valueOf(request.pathVariable("id"));
-        return request.bodyToMono(Producto.class)
-                .flatMap(f -> useCase.updateProductoStock(id, f))
-                .flatMap(f -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).bodyValue(f));
-    }
+	public Mono<ServerResponse> findById(ServerRequest request) {
+		Long id = Long.valueOf(request.pathVariable("id"));
+		return useCase.getProductoById(id)
+				.flatMap(f -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).bodyValue(f))
+				.switchIfEmpty(ServerResponse.notFound().build());
+	}
 
+	public Mono<ServerResponse> update(ServerRequest request) {
+		Long id = Long.valueOf(request.pathVariable("id"));
+		return request.bodyToMono(Producto.class).flatMap(f -> useCase.updateProducto(id, f))
+				.flatMap(f -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).bodyValue(f));
+	}
 
-    public Mono<ServerResponse> delete(ServerRequest request) {
-        Long id = Long.valueOf(request.pathVariable("id"));
-        return useCase.deleteProducto(id).then(ServerResponse.noContent().build());
-    }
-	
-	
+	public Mono<ServerResponse> updateStock(ServerRequest request) {
+		Long id = Long.valueOf(request.pathVariable("id"));
+		return request.bodyToMono(Producto.class).flatMap(f -> useCase.updateProductoStock(id, f))
+				.flatMap(f -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).bodyValue(f));
+	}
+
+	public Mono<ServerResponse> delete(ServerRequest request) {
+		Long id = Long.valueOf(request.pathVariable("id"));
+		return useCase.deleteProducto(id).then(ServerResponse.noContent().build());
+	}
+
 }

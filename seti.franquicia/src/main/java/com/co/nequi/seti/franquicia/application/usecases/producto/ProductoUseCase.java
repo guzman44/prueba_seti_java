@@ -5,6 +5,7 @@ package com.co.nequi.seti.franquicia.application.usecases.producto;
 
 import com.co.nequi.seti.franquicia.domain.gateway.ProductoRepository;
 import com.co.nequi.seti.franquicia.domain.model.Producto;
+import com.co.nequi.seti.franquicia.domain.model.ProductoStockPorSucursal;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -30,7 +31,11 @@ public class ProductoUseCase {
 	public Flux<Producto> getAllProductos() {
 		return repository.findAll();
 	}
-
+	
+	public Flux<ProductoStockPorSucursal> obtenerProductoMayorStockPorSucursalDeFranquicia(Long idFranquicia) {
+		return repository.obtenerProductoMayorStockPorSucursalDeFranquicia(idFranquicia);
+	}
+		
 	public Mono<Producto> getProductoById(Long id) {
 		return repository.findById(id);
 	}

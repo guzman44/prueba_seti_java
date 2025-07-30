@@ -4,7 +4,10 @@
 package com.co.nequi.seti.franquicia.infrastructure.drivenadapter.producto.mapper;
 
 import com.co.nequi.seti.franquicia.domain.model.Producto;
+import com.co.nequi.seti.franquicia.domain.model.ProductoStockPorSucursal;
 import com.co.nequi.seti.franquicia.infrastructure.drivenadapter.producto.entity.ProductoEntity;
+
+import io.r2dbc.spi.Row;
 
 /**
  * @author MarkoPortatil
@@ -22,6 +25,12 @@ public class ProductoMapper {
 
 	public static ProductoEntity toEntity(Producto domain) {
 		return new ProductoEntity(domain.getId(), domain.getNombre(), domain.getStock(), domain.getIdSucursal());
+	}
+
+	public static ProductoStockPorSucursal toProductoStock(Row row) {
+		return new ProductoStockPorSucursal(row.get("idProducto", Long.class), row.get("nombreProducto", String.class),
+				row.get("stock", Integer.class), row.get("idSucursal", Long.class),
+				row.get("nombreSucursal", String.class));
 	}
 
 }
