@@ -28,6 +28,7 @@ public class ProductoRouter {
 								.GET("/productos/{id}", handler::findById)
 								.GET("/productos", handler::findAll)
 								.PUT("/productos/{id}", handler::update)
+								.PUT("/productos/{id}/stock", handler::updateStock)
 								.DELETE("/productos/{id}", handler::delete)
 
 				).build();

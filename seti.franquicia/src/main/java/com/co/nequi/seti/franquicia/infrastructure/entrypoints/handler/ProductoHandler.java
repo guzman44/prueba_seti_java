@@ -54,6 +54,14 @@ public class ProductoHandler {
                 .flatMap(f -> useCase.updateProducto(id, f))
                 .flatMap(f -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).bodyValue(f));
     }
+    
+    public Mono<ServerResponse> updateStock(ServerRequest request) {
+        Long id = Long.valueOf(request.pathVariable("id"));
+        return request.bodyToMono(Producto.class)
+                .flatMap(f -> useCase.updateProductoStock(id, f))
+                .flatMap(f -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).bodyValue(f));
+    }
+
 
     public Mono<ServerResponse> delete(ServerRequest request) {
         Long id = Long.valueOf(request.pathVariable("id"));

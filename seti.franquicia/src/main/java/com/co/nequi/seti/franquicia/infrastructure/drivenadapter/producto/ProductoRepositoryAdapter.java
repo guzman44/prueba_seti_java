@@ -50,6 +50,14 @@ public class ProductoRepositoryAdapter implements ProductoRepository {
 	}
 
 	@Override
+	public Mono<Producto> updateStock(Long id, Producto producto) {
+		return repository.findById(id).flatMap(existing -> {
+			existing.setStock(producto.getStock());
+			return repository.save(existing);
+		}).map(ProductoMapper::toDomain);
+	}
+
+	@Override
 	public Mono<Void> delete(Long id) {
 		return repository.deleteById(id);
 	}

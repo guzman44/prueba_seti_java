@@ -27,6 +27,7 @@ public class SucursalRouter {
 								.POST("/sucursales", handler::create)
 								.GET("/sucursales/{id}", handler::findById)
 								.GET("/sucursales", handler::findAll)
+								.GET("/sucursales", handler::findAll)
 								.PUT("/sucursales/{id}", handler::update)
 								.DELETE("/sucursales/{id}", handler::delete)
 

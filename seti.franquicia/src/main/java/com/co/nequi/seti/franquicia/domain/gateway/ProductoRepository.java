@@ -15,13 +15,15 @@ import reactor.core.publisher.Mono;
  */
 public interface ProductoRepository {
 
-	Mono<Producto> save(Producto Franquicia);
+	Mono<Producto> save(Producto producto);
 
 	Mono<Producto> findById(Long id);
 
 	Flux<Producto> findAll();
 
-	Mono<Producto> update(Long id, Producto Franquicia);
+	Mono<Producto> update(Long id, Producto producto);
 
+	Mono<Producto> updateStock(Long id, Producto producto);
+	
 	Mono<Void> delete(Long id);
 }

@@ -39,6 +39,11 @@ public class ProductoUseCase {
 		return repository.update(id, producto);
 	}
 
+
+	public Mono<Producto> updateProductoStock(Long id, Producto producto) {
+		return repository.updateStock(id, producto);
+	}
+
 	public Mono<Void> deleteProducto(Long id) {
 		return repository.delete(id);
 	}

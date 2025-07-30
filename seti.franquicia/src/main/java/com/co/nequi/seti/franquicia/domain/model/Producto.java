@@ -21,14 +21,14 @@ public class Producto {
 	 * @param id
 	 * @param nombre
 	 * @param precio
-	 * @param idFranquicia
+	 * @param idSucursal
 	 */
-	public Producto(Long id, String nombre, Long stock, Long sucursal_id) {
+	public Producto(Long id, String nombre, Long stock, Long idSucursal) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.stock = stock;
-		this.idSucursal = sucursal_id;
+		this.idSucursal = idSucursal;
 	}
 
 	public Long getId() {
