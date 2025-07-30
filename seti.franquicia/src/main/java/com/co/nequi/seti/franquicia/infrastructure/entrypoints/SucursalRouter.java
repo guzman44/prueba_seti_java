@@ -8,7 +8,7 @@ import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.RouterFunctions;
 import org.springframework.web.reactive.function.server.ServerResponse;
 
-import com.co.nequi.seti.franquicia.infrastructure.entrypoints.handler.FranquiciaHandler;
+import com.co.nequi.seti.franquicia.infrastructure.entrypoints.handler.SucursalHandler;
 
 /**
  * @author MarkoPortatil
@@ -17,18 +17,15 @@ import com.co.nequi.seti.franquicia.infrastructure.entrypoints.handler.Franquici
  */
 
 @Configuration
-public class FranquiciaRouter {
+public class SucursalRouter {
 
 	@Bean
-	public RouterFunction<ServerResponse> routeFranquicia(FranquiciaHandler handler) {
+	public RouterFunction<ServerResponse> routeSucursal(SucursalHandler handler) {
 		return RouterFunctions.route()
-				.nest(path("/api/franquicia"),
-						builder -> builder
-								.POST("/franquicias", handler::create)
-								.GET("/franquicias/{id}", handler::findById)
-								.GET("/franquicias", handler::findAll)
-								.PUT("/franquicias/{id}", handler::update)
-								.DELETE("/franquicias/{id}", handler::delete)
+				.nest(path("/api/sucursal"),
+						builder -> builder.POST("/sucursales", handler::create)
+								.GET("/sucursales/{id}", handler::findById).GET("/sucursales", handler::findAll)
+								.PUT("/sucursales/{id}", handler::update).DELETE("/sucursales/{id}", handler::delete)
 
 				).build();
 	}

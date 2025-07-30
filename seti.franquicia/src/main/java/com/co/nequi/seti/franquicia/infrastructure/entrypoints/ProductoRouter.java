@@ -8,7 +8,7 @@ import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.RouterFunctions;
 import org.springframework.web.reactive.function.server.ServerResponse;
 
-import com.co.nequi.seti.franquicia.infrastructure.entrypoints.handler.FranquiciaHandler;
+import com.co.nequi.seti.franquicia.infrastructure.entrypoints.handler.ProductoHandler;
 
 /**
  * @author MarkoPortatil
@@ -17,18 +17,18 @@ import com.co.nequi.seti.franquicia.infrastructure.entrypoints.handler.Franquici
  */
 
 @Configuration
-public class FranquiciaRouter {
+public class ProductoRouter {
 
 	@Bean
-	public RouterFunction<ServerResponse> routeFranquicia(FranquiciaHandler handler) {
+	public RouterFunction<ServerResponse> routeProducto(ProductoHandler handler) {
 		return RouterFunctions.route()
-				.nest(path("/api/franquicia"),
+				.nest(path("/api/producto"),
 						builder -> builder
-								.POST("/franquicias", handler::create)
-								.GET("/franquicias/{id}", handler::findById)
-								.GET("/franquicias", handler::findAll)
-								.PUT("/franquicias/{id}", handler::update)
-								.DELETE("/franquicias/{id}", handler::delete)
+								.POST("/productos", handler::create)
+								.GET("/productos/{id}", handler::findById)
+								.GET("/productos", handler::findAll)
+								.PUT("/productos/{id}", handler::update)
+								.DELETE("/productos/{id}", handler::delete)
 
 				).build();
 	}
