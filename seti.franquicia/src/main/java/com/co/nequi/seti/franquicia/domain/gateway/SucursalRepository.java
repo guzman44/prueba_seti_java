@@ -13,13 +13,15 @@ import reactor.core.publisher.Mono;
  * @version 1.0
  * @since 29 Julio 2025
  */
-public interface  SucursalRepository {
+public interface SucursalRepository {
 
 	Mono<Sucursal> save(Sucursal Sucursal);
 
 	Flux<Sucursal> findByIdFranquicia(Long IdFranquicia);
 
 	Mono<Sucursal> findById(Long id);
+
+	Flux<Sucursal> findAll();
 
 	Mono<Sucursal> update(Long id, Sucursal Sucursal);
 

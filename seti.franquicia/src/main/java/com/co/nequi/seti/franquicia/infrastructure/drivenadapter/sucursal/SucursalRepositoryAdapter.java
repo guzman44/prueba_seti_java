@@ -11,8 +11,12 @@ import com.co.nequi.seti.franquicia.infrastructure.drivenadapter.sucursal.reposi
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+/**
+ * @author MarkoPortatil
+ * @version 1.0
+ * @since 29 Julio 2025
+ */
 @Component
-
 public class SucursalRepositoryAdapter implements SucursalRepository {
 
 	public SucursalRepositoryAdapter(SucursalR2DBCRepository repository) {
@@ -50,5 +54,11 @@ public class SucursalRepositoryAdapter implements SucursalRepository {
 	@Override
 	public Mono<Void> delete(Long id) {
 		return repository.deleteById(id);
+	}
+
+
+	@Override
+	public Flux<Sucursal> findAll() {
+		return repository.findAll().map(SucursalMapper::toDomain);
 	}
 }

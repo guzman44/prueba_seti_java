@@ -11,6 +11,11 @@ import com.co.nequi.seti.franquicia.infrastructure.drivenadapter.franquicia.repo
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+/**
+ * @author MarkoPortatil
+ * @version 1.0
+ * @since 29 Julio 2025
+ */
 @Component
 public class FranquiciaRepositoryAdapter implements FranquiciaRepository {
 
