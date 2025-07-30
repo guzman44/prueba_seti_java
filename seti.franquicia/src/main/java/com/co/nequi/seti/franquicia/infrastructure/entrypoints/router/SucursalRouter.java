@@ -1,4 +1,4 @@
-package com.co.nequi.seti.franquicia.infrastructure.entrypoints;
+package com.co.nequi.seti.franquicia.infrastructure.entrypoints.router;
 
 import static org.springframework.web.reactive.function.server.RequestPredicates.path;
 
