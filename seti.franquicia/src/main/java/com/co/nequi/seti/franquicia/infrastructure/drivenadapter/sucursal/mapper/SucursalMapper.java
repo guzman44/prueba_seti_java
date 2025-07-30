@@ -17,11 +17,11 @@ public class SucursalMapper {
 	}
 
 	public static Sucursal toDomain(SucursalEntity entity) {
-		return new Sucursal(entity.getId(), entity.getNombre(), entity.getDireccion(), entity.getIdFranquicia());
+		return new Sucursal(entity.getId(), entity.getNombre(), entity.getidFranquicia());
 	}
 
 	public static SucursalEntity toEntity(Sucursal domain) {
-		return new SucursalEntity(domain.getId(), domain.getNombre(), domain.getDireccion(), domain.getIdFranquicia());
+		return new SucursalEntity(domain.getId(), domain.getNombre(),domain.getIdFranquicia());
 	}
 
 }

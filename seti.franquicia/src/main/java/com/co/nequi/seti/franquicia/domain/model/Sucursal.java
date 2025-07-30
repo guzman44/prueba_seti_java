@@ -14,7 +14,6 @@ public class Sucursal {
 
 	private Long id;
 	private String nombre;
-	private String direccion;
 	private Long idFranquicia;
 	private List<Producto> productos;
 
@@ -26,11 +25,10 @@ public class Sucursal {
 	 * @param direccion
 	 * @param idFranquicia
 	 */
-	public Sucursal(Long id, String nombre, String direccion, Long idFranquicia) {
+	public Sucursal(Long id, String nombre, Long idFranquicia) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
-		this.direccion = direccion;
 		this.idFranquicia = idFranquicia;
 	}
 
@@ -48,14 +46,6 @@ public class Sucursal {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-
-	public String getDireccion() {
-		return direccion;
-	}
-
-	public void setDireccion(String direccion) {
-		this.direccion = direccion;
 	}
 
 	public Long getIdFranquicia() {

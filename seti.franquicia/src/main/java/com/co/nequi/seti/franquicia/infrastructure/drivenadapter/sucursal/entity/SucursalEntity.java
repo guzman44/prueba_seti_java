@@ -4,6 +4,7 @@
 package com.co.nequi.seti.franquicia.infrastructure.drivenadapter.sucursal.entity;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 /**
@@ -16,9 +17,9 @@ public class SucursalEntity {
 
 	@Id
 	private Long id;
-
 	private String nombre;
-	private String direccion;
+
+	@Column("franquicia_id")
 	private Long idFranquicia;
 
 	/**
@@ -29,11 +30,10 @@ public class SucursalEntity {
 	 * @param direccion
 	 * @param idFranquicia
 	 */
-	public SucursalEntity(Long id, String nombre, String direccion, Long idFranquicia) {
+	public SucursalEntity(Long id, String nombre, Long idFranquicia) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
-		this.direccion = direccion;
 		this.idFranquicia = idFranquicia;
 	}
 
@@ -51,14 +51,6 @@ public class SucursalEntity {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-
-	public String getDireccion() {
-		return direccion;
-	}
-
-	public void setDireccion(String direccion) {
-		this.direccion = direccion;
 	}
 
 	public Long getIdFranquicia() {

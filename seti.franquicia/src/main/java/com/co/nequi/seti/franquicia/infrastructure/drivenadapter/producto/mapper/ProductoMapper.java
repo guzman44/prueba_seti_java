@@ -17,7 +17,7 @@ public class ProductoMapper {
 	}
 
 	public static Producto toDomain(ProductoEntity entity) {
-		return new Producto(entity.getId(), entity.getNombre(), entity.getStock(), entity.getSucursal_id());
+		return new Producto(entity.getId(), entity.getNombre(), entity.getStock(), entity.getIdSucursal());
 	}
 
 	public static ProductoEntity toEntity(Producto domain) {

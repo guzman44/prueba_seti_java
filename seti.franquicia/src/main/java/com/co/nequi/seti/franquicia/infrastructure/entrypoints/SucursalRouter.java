@@ -23,9 +23,12 @@ public class SucursalRouter {
 	public RouterFunction<ServerResponse> routeSucursal(SucursalHandler handler) {
 		return RouterFunctions.route()
 				.nest(path("/api/sucursal"),
-						builder -> builder.POST("/sucursales", handler::create)
-								.GET("/sucursales/{id}", handler::findById).GET("/sucursales", handler::findAll)
-								.PUT("/sucursales/{id}", handler::update).DELETE("/sucursales/{id}", handler::delete)
+						builder -> builder
+								.POST("/sucursales", handler::create)
+								.GET("/sucursales/{id}", handler::findById)
+								.GET("/sucursales", handler::findAll)
+								.PUT("/sucursales/{id}", handler::update)
+								.DELETE("/sucursales/{id}", handler::delete)
 
 				).build();
 	}

@@ -4,6 +4,7 @@
 package com.co.nequi.seti.franquicia.infrastructure.drivenadapter.producto.entity;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 /**
@@ -19,7 +20,9 @@ public class ProductoEntity {
 	private Long id;
 	private String nombre;
 	private Long stock;
-	private Long sucursal_id;
+
+	@Column("sucursal_id")
+	private Long idSucursal;
 
 	/**
 	 * Metodo Constructor
@@ -27,14 +30,14 @@ public class ProductoEntity {
 	 * @param id
 	 * @param nombre
 	 * @param stock
-	 * @param sucursal_id
+	 * @param idSucursal
 	 */
-	public ProductoEntity(Long id, String nombre, Long stock, Long sucursal_id) {
+	public ProductoEntity(Long id, String nombre, Long stock, Long idSucursal) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.stock = stock;
-		this.sucursal_id = sucursal_id;
+		this.idSucursal = idSucursal;
 	}
 
 	public Long getId() {
@@ -61,12 +64,12 @@ public class ProductoEntity {
 		this.stock = stock;
 	}
 
-	public Long getSucursal_id() {
-		return sucursal_id;
+	public Long getIdSucursal() {
+		return idSucursal;
 	}
 
-	public void setSucursal_id(Long sucursal_id) {
-		this.sucursal_id = sucursal_id;
+	public void setIdSucursal(Long idSucursal) {
+		this.idSucursal = idSucursal;
 	}
 
 }

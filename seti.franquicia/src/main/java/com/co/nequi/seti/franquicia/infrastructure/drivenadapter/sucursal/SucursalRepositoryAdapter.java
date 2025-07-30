@@ -47,6 +47,7 @@ public class SucursalRepositoryAdapter implements SucursalRepository {
 	public Mono<Sucursal> update(Long id, Sucursal Sucursal) {
 		return repository.findById(id).flatMap(existing -> {
 			existing.setNombre(Sucursal.getNombre());
+			existing.setidFranquicia(Sucursal.getIdFranquicia());
 			return repository.save(existing);
 		}).map(SucursalMapper::toDomain);
 	}
