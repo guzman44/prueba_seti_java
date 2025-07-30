@@ -17,7 +17,7 @@ public class SucursalMapper {
 	}
 
 	public static Sucursal toDomain(SucursalEntity entity) {
-		return new Sucursal(entity.getId(), entity.getNombre(), entity.getidFranquicia());
+		return new Sucursal(entity.getId(), entity.getNombre(), entity.getIdFranquicia());
 	}
 
 	public static SucursalEntity toEntity(Sucursal domain) {
